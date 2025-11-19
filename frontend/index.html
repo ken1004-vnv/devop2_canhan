@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Store - Mua Điện Thoại Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">📱 Phone Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">🛒 Giỏ Hàng <span id="cart-badge" class="badge bg-danger" style="display: none;">0</span></a>
+                    </li>
+                    <div id="auth-buttons" class="d-flex gap-2">
+                        <a href="login.html" class="btn btn-outline-light btn-sm">Đăng Nhập</a>
+                        <a href="register.html" class="btn btn-danger btn-sm">Đăng Ký</a>
+                    </div>
+                    <div id="user-menu" style="display: none;">
+                        <span id="user-name" class="text-light me-3"></span>
+                        <button id="logout-btn" class="btn btn-danger btn-sm">Đăng Xuất</button>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center text-white py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold">🎁 Điện Thoại Chính Hãng Giá Tốt</h1>
+            <p class="lead">Mua ngay - Hưởng ưu đãi đặc biệt</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">📱 Danh Sách Sản Phẩm</h2>
+            <div id="products-container" class="row g-4">
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 Phone Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

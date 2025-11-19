@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Phone Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h2 class="mb-4 text-center">🔐 Đăng Nhập</h2>
+            <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+            
+            <form id="login-form">
+                <div class="mb-3">
+                    <label for="email" class="form-label">📧 Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">🔐 Mật Khẩu</label>
+                    <input type="password" class="form-control" id="password" placeholder="••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-3">Đăng Nhập</button>
+            </form>
+
+            <div class="text-center">
+                <p class="mb-0">Chưa có tài khoản? <a href="register.html" class="text-decoration-none">Đăng ký ngay</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById("login-form").addEventListener("submit", login);
+
+        async function login(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("http://localhost:3000/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showError(data.message || "Đăng nhập thất bại");
+                    return;
+                }
+
+                // Save token and user info
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                
+                alert("✅ Đăng nhập thành công!");
+                window.location.href = "index.html";
+            } catch (error) {
+                showError("❌ Lỗi kết nối: " + error.message);
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById("error-message");
+            errorDiv.textContent = message;
+            errorDiv.classList.remove("d-none");
+        }
+    </script>
+</body>
+</html>
